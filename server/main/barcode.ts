@@ -54,14 +54,14 @@ const barcode = async (query, serve) => {
                     nutrients: product.nutriments,
                 }
                 let html = `<div>
-                <p><strong>name:</strong> ${summary.name}</p>
-                <p style="width: 250px;"><strong>ingredients:</strong> ${summary.ingredients}</p>
-                <p style="width: 250px;"><strong>allergens:</strong> ${summary.allergens}</p>
-                <p><strong>Serving Information:</strong></p>
+                <p><strong>name:</strong> ${summary.name}</p><br/>
+                <p style="width: 250px;"><strong>ingredients:</strong> ${summary.ingredients}</p><br/>
+                <p style="width: 250px;"><strong>allergens:</strong> ${summary.allergens}</p><br/>
+                <p><strong>Serving Information:</strong></p><br/>
                 <ul>
                 ${Object.entries(summary.serving_summary).map(([key, value]) => {
                     return (
-                        `<li>${key}: ${value}</li>`
+                        `<li>${key}: ${value}</li><br/>`
                     )
                 }).join('')}
                 </ul>
