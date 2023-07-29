@@ -32,6 +32,9 @@ const barcode = async (query, serve) => {
             route: '/:id/summary',
             method: 'GET',
             controller: async (req: Request, res: Response) => {
+                try {
+                    
+               
                 const barcode_number:string = req.params.id
                 console.log(barcode_number)
 
@@ -53,21 +56,24 @@ const barcode = async (query, serve) => {
                     serving_summary,
                     nutrients: product.nutriments,
                 }
-                let html = `
-                <p><strong>name:</strong> ${summary.name} </p> \n
-                <p style="width: 250px;"><strong>ingredients:</strong> ${summary.ingredients}</p> \n
-                <p style="width: 250px;"><strong>allergens:</strong> ${summary.allergens}</p> \n
-                <p><strong>Serving Information:</strong></p> \n
+                let html = `<div>
+                <p><strong>name:</strong> ${summary.name}</p>
+                <p style="width: 250px;"><strong>ingredients:</strong> ${summary.ingredients}</p>
+                <p style="width: 250px;"><strong>allergens:</strong> ${summary.allergens}</p>
+                <p><strong>Serving Information:</strong></p>
                 <ul>
                 ${Object.entries(summary.serving_summary).map(([key, value]) => {
                     return (
-                        `<li>${key}: ${value}</li>\n`
+                        `<li>${key}: ${value}</li>`
                     )
                 }).join('')}
                 </ul>
                 </div>`
                 res.status(200).send(html)
                 // res.status(200).json(summary);
+            } catch (error) {
+                    res.status(400).send(`error ${error}`)
+            }
             }
         },
 

@@ -8,9 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 for (const router of (await config()).routers) {
     const express_router = express.Router();
-    console.log(router);
     for (const route of router.routes) {
-        console.log(route);
         express_router.route(route.route)[route?.method?.toLowerCase()]((route.middleware || ((_, __, next) => next())), (route?.controller || ((req, res) => res.send(req.path))));
     }
     app.use(router.route, express_router);
