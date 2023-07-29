@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.mjs",
   "type": "module",
+  "engines": {
+    "node": "19.x"
+  },
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
