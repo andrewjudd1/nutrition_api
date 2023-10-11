@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction} from "express"
 import utils from "./utils/utils.js"
-import main_files from './main/index.js'
+import main_files from './controllers/index.js'
 import url from 'url'
 import fs from 'fs/promises'
 const config = async () => {
@@ -27,7 +27,7 @@ let root_url:string = ''
 const routers: Array<Routers> = []
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
-    const paths = await fs.readdir(__dirname + 'main')
+    const paths = await fs.readdir(__dirname + 'controllers')
     console.log(paths)
     const create_db_endpoint = async ({ route, method, controller, middleware }:  {route: string, method: string, controller: Controller, middleware: Middleware}) => {
         if (!routers.filter(item => item.route === `${root_url}/api/v1`).length) {

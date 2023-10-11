@@ -1,12 +1,12 @@
 import utils from "./utils/utils.js";
-import main_files from './main/index.js';
+import main_files from './controllers/index.js';
 import url from 'url';
 import fs from 'fs/promises';
 const config = async () => {
     let root_url = '';
     const routers = [];
     const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-    const paths = await fs.readdir(__dirname + 'main');
+    const paths = await fs.readdir(__dirname + 'controllers');
     console.log(paths);
     const create_db_endpoint = async ({ route, method, controller, middleware }) => {
         if (!routers.filter(item => item.route === `${root_url}/api/v1`).length) {
